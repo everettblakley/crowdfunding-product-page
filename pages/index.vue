@@ -1,68 +1,155 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">crowdfunding-product-page</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+    <header>
+      <nav>
+        <logo />
+        <div>
+          <ul>
+            <li>About</li>
+            <li>Discover</li>
+            <li>Get Started</li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h1>Mastercraft Bamboo Monitor Riser</h1>
+        <p>
+          A beautiful & handcrafted monitor stand to reduce neck and eye strain.
+          Back this project Bookmark
+        </p>
+      </section>
+
+      <section>
+        <div class="stat">
+          <h1>$89,914</h1>
+          of $100,000 backed
+        </div>
+        <div class="stat">
+          <h1>5,007</h1>
+          total backers
+        </div>
+        <div class="stat">
+          <h1>56</h1>
+          days left
+        </div>
+        <div class="progress"></div>
+      </section>
+
+      <section>
+        <h2>About this project</h2>
+        <p>
+          The Mastercraft Bamboo Monitor Riser is a sturdy and stylish platform
+          that elevates your screen to a more comfortable viewing height.
+          Placing your monitor at eye level has the potential to improve your
+          posture and make you more comfortable while at work, helping you stay
+          focused on the task at hand.
+        </p>
+        <p>
+          Featuring artisan craftsmanship, the simplicity of design creates
+          extra desk space below your computer to allow notepads, pens, and USB
+          sticks to be stored under the stand.
+        </p>
+
+        <div class="teir-card">
+          <div>
+            <h2>Bamboo Stand</h2>
+            Pledge $25 or more
+          </div>
+          <p>
+            You get an ergonomic stand made of natural bamboo. You've helped us
+            launch our promotional campaign, and you’ll be added to a special
+            Backer member list.
+          </p>
+          <div>
+            <div>101 left</div>
+            <button>Select Reward</button>
+          </div>
+        </div>
+
+        <div class="tier-card">
+          <div>
+            <h2>Black Edition Stand</h2>
+            Pledge $75 or more
+          </div>
+          <p>
+            You get a Black Special Edition computer stand and a personal thank
+            you. You’ll be added to our Backer member list. Shipping is
+            included.
+          </p>
+          <div>
+            <div>
+              <h1>64</h1>
+              left
+            </div>
+            <button>Select Reward</button>
+          </div>
+        </div>
+
+        <div class="tier-card">
+          <div>
+            <h2>Mahogany Special Edition</h2>
+            Pledge $200 or more
+          </div>
+          <p>
+            You get two Special Edition Mahogany stands, a Backer T-Shirt, and a
+            personal thank you. You’ll be added to our Backer member list.
+            Shipping is included.
+          </p>
+          <div>
+            <div>
+              <h1>0</h1>
+              left
+            </div>
+            <button>Out of Stock</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Selection modal start -->
+
+      Back this project Want to support us in bringing Mastercraft Bamboo
+      Monitor Riser out in the world? Pledge with no reward Choose to support us
+      without a reward if you simply believe in our project. As a backer, you
+      will be signed up to receive product updates via email. Bamboo Stand
+      Pledge $25 or more You get an ergonomic stand made of natural bamboo.
+      You've helped us launch our promotional campaign, and you’ll be added to a
+      special Backer member list. 101 left
+
+      <!-- Selected pledge start -->
+      Enter your pledge $25 Continue
+      <!-- Selected pledge end -->
+
+      Black Edition Stand Pledge $75 or more You get a Black Special Edition
+      computer stand and a personal thank you. You’ll be added to our Backer
+      member list. Shipping is included. 64 left
+
+      <!-- Selected pledge start -->
+      Enter your pledge $75 Continue
+      <!-- Selected pledge end -->
+
+      Mahogany Special Edition Pledge $200 or more You get two Special Edition
+      Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be
+      added to our Backer member list. Shipping is included. 0 left
+
+      <!-- Selected pledge  start -->
+      Enter your pledge $200 Continue
+      <!-- Selected pledge end -->
+
+      <!-- Selection modal end -->
+
+      <!-- Success modal start -->
+
+      Thanks for your support! Your pledge brings us one step closer to sharing
+      Mastercraft Bamboo Monitor Riser worldwide. You will get an email once our
+      campaign is completed. Got it!
+
+      <!-- Success modal end -->
+    </main>
   </div>
 </template>
 
 <script>
 export default {}
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
