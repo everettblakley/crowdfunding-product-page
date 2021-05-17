@@ -243,6 +243,6 @@ button:disabled {
 }
 
 .tier-card.disabled {
-  opacity: 0.5%;
+  opacity: 0.5;
 }
 </style>
