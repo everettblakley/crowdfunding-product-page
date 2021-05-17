@@ -1,35 +1,43 @@
 <template>
   <div>
     <header class="relative bg-red">
-      <!-- <img
+      <img
         src="/image-hero-mobile.jpg"
         alt="Mastercraft Hero image"
-        class="absolute top-0 left-0 right-0 z-0"
-      /> -->
-      <nav class="flex items-center w-full z-10 px-8 pt-6">
+        class="absolute top-0 left-0 right-0 hero"
+      />
+      <nav>
         <logo class="h-5"></logo>
         <ul class="hidden sm:flex ml-auto">
           <li><nuxt-link to="#">About</nuxt-link></li>
           <li><nuxt-link to="#">Discover</nuxt-link></li>
           <li><nuxt-link to="#">Get Started</nuxt-link></li>
         </ul>
-        <div
-          class="text-black ml-auto w-4 h-4 overflow-hidden"
-          @click="toggleMenu"
-        >
-          <transition name="menu" mode="out-in">
-            <hamburer v-if="menuOpen"></hamburer>
-            <close-menu v-else></close-menu>
-          </transition>
+        <div class="ml-auto w-4 h-4 overflow-hidden" @click="toggleMenu">
+          <close-menu v-if="menuOpen" key="close"></close-menu>
+          <hamburger v-else key="hamburger"></hamburger>
         </div>
+        <transition name="menu-slide">
+          <div
+            v-if="menuOpen"
+            v-on-clickaway="toggleMenu"
+            class="mobile-menu-mask"
+          >
+            <ul class="mobile-menu">
+              <li><nuxt-link to="#">About</nuxt-link></li>
+              <li><nuxt-link to="#">Discover</nuxt-link></li>
+              <li><nuxt-link to="#">Get Started</nuxt-link></li>
+            </ul>
+          </div>
+        </transition>
       </nav>
     </header>
-    <main class="mt-32 px-6">
+    <main class="mt-52 px-6">
       <section class="relative text-center">
         <div class="icon">
           <img src="/logo-mastercraft.svg" alt="" />
         </div>
-        <h1>Mastercraft Bamboo Monitor Riser</h1>
+        <h1 class="mt-4">Mastercraft Bamboo Monitor Riser</h1>
         <p>
           A beautiful & handcrafted monitor stand to reduce neck and eye strain.
         </p>
@@ -71,57 +79,15 @@
           extra desk space below your computer to allow notepads, pens, and USB
           sticks to be stored under the stand.
         </p>
-
-        <div class="tier-card">
-          <div class="title">
-            <h3>Bamboo Stand</h3>
-            <p>Pledge $25 or more</p>
-          </div>
-          <p>
-            You get an ergonomic stand made of natural bamboo. You've helped us
-            launch our promotional campaign, and you’ll be added to a special
-            Backer member list.
-          </p>
-          <div class="count">
-            <h1>101</h1>
-            <p>left</p>
-          </div>
-          <button>Select Reward</button>
-        </div>
-
-        <div class="tier-card">
-          <div class="title">
-            <h3>Black Edition Stand</h3>
-            <p>Pledge $75 or more</p>
-          </div>
-          <p>
-            You get a Black Special Edition computer stand and a personal thank
-            you. You’ll be added to our Backer member list. Shipping is
-            included.
-          </p>
-          <div class="count">
-            <h1>64</h1>
-            <p>left</p>
-          </div>
-          <button>Select Reward</button>
-        </div>
-
-        <div class="tier-card disabled">
-          <div class="title">
-            <h3>Mahogany Special Edition</h3>
-            <p>Pledge $200 or more</p>
-          </div>
-          <p>
-            You get two Special Edition Mahogany stands, a Backer T-Shirt, and a
-            personal thank you. You’ll be added to our Backer member list.
-            Shipping is included.
-          </p>
-          <div class="count">
-            <h1>0</h1>
-            <p>left</p>
-          </div>
-          <button disabled>Out of Stock</button>
-        </div>
+        <tier-card
+          v-for="tier in tiers"
+          :key="tier.title"
+          :title="tier.title"
+          :amount="tier.amount"
+          :body="tier.body"
+          :count="tier.count"
+          :disabled="tier.disabled"
+        ></tier-card>
       </section>
     </main>
   </div>
@@ -130,12 +96,43 @@
 <script>
 import Bookmark from '../components/icons/Bookmark.vue'
 import CloseMenu from '../components/icons/CloseMenu.vue'
-import Hamburer from '../components/icons/Hamburer.vue'
+import Hamburger from '../components/icons/Hamburger.vue'
+import TierCard from '../components/TierCard.vue'
 export default {
-  components: { Hamburer, CloseMenu, Bookmark },
+  components: { Hamburger, CloseMenu, Bookmark, TierCard },
   data() {
     return {
       menuOpen: false,
+      tiers: [
+        {
+          title: 'Bamboo Stand',
+          amount: 25,
+          body:
+            'You get an ergonomic stand made of natural bamboo. ' +
+            "You've helped us launch our promotional campaign, " +
+            'and you’ll be added to a special Backer member list.',
+          count: 101,
+        },
+        {
+          title: 'Black Edition Stand',
+          amount: 75,
+          body:
+            'You get a Black Special Edition computer stand and a personal ' +
+            'thank you. You’ll be added to our Backer member list. ' +
+            'Shipping is included.',
+          count: 64,
+        },
+        {
+          title: 'Mahogany Special Edition',
+          amount: 200,
+          body:
+            'You get two Special Edition Mahogany stands, a Backer T-Shirt, ' +
+            'and a personal thank you. You’ll be added to our Backer member ' +
+            'list. Shipping is included.',
+          count: 0,
+          disabled: true,
+        },
+      ],
     }
   },
   methods: {
@@ -173,8 +170,12 @@ p {
   @apply text-dark-gray;
 }
 
+nav {
+  @apply text-white bg-gradient-to-b from-black flex items-center w-full z-10 p-6;
+}
+
 section {
-  @apply rounded-lg border-gray-200 border-opacity-30 mb-8 px-6 py-8;
+  @apply bg-white rounded-lg border-gray-200 border-opacity-30 mb-8 px-6 py-8;
   border-width: 1px;
 }
 
@@ -186,14 +187,51 @@ button:disabled {
   @apply bg-dark-gray;
 }
 
-.menu-enter,
-.menu-leave-to {
-  opactiy: 0;
+.hero {
+  z-index: -1;
 }
 
-.menu-enter-active,
-.menu-leave-active {
-  transition: opactiy 200ms ease;
+.menu-slide-enter,
+.menu-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-10%);
+}
+
+.menu-slide-enter-to,
+.menu-slide-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-slide-enter-active,
+.menu-slide-leave-active {
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+  transition-duration: opacity, transform;
+}
+
+.mobile-menu-mask {
+  @apply fixed top-0 bottom-0 right-0 left-0 pointer-events-none z-40;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3412552521008403) 31%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.mobile-menu {
+  @apply bg-white text-black text-lg font-medium;
+  @apply absolute top-20 left-6 right-6 z-50;
+  @apply rounded-lg border-2;
+}
+
+.mobile-menu li {
+  @apply px-4 py-5;
+}
+
+.mobile-menu li + li {
+  @apply border-gray-200 border-0 border-t-2;
 }
 
 .icon {
@@ -219,30 +257,5 @@ button:disabled {
   content: '';
   @apply block bg-light-cyan rounded-lg h-full;
   width: 89%;
-}
-
-.tier-card {
-  @apply rounded-lg border-dark-gray border-opacity-30 p-4 mb-8;
-  border-width: 1px;
-}
-
-.tier-card > .title h3 {
-  @apply mb-1;
-}
-
-.tier-card > .title p {
-  @apply text-light-cyan;
-}
-
-.tier-card > .count {
-  @apply flex items-center my-2;
-}
-
-.tier-card > .count h1 {
-  @apply text-3xl mr-2;
-}
-
-.tier-card.disabled {
-  opacity: 0.5;
 }
 </style>

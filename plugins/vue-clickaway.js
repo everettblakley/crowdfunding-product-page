@@ -1,4 +1,6 @@
 import Vue from 'vue'
-import VueClickaway from 'vue-clickaway'
+import { mixin as clickaway } from 'vue-clickaway'
 
-Vue.use(VueClickaway)
+Vue.mixin({
+  mixins: [clickaway],
+})
