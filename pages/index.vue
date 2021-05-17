@@ -1,40 +1,60 @@
 <template>
   <div>
-    <header>
-      <nav>
-        <logo></logo>
-        <div>
-          <ul>
-            <li>About</li>
-            <li>Discover</li>
-            <li>Get Started</li>
-          </ul>
+    <header class="relative bg-red">
+      <!-- <img
+        src="/image-hero-mobile.jpg"
+        alt="Mastercraft Hero image"
+        class="absolute top-0 left-0 right-0 z-0"
+      /> -->
+      <nav class="flex items-center w-full z-10 px-8 pt-6">
+        <logo class="h-5"></logo>
+        <ul class="hidden sm:flex ml-auto">
+          <li><nuxt-link to="#">About</nuxt-link></li>
+          <li><nuxt-link to="#">Discover</nuxt-link></li>
+          <li><nuxt-link to="#">Get Started</nuxt-link></li>
+        </ul>
+        <div
+          class="text-black ml-auto w-4 h-4 overflow-hidden"
+          @click="toggleMenu"
+        >
+          <transition name="menu" mode="out-in">
+            <hamburer v-if="menuOpen"></hamburer>
+            <close-menu v-else></close-menu>
+          </transition>
         </div>
       </nav>
     </header>
-    <main>
-      <section>
+    <main class="mt-32 px-6">
+      <section class="relative text-center">
+        <div class="icon">
+          <img src="/logo-mastercraft.svg" alt="" />
+        </div>
         <h1>Mastercraft Bamboo Monitor Riser</h1>
         <p>
           A beautiful & handcrafted monitor stand to reduce neck and eye strain.
-          Back this project Bookmark
         </p>
+        <div class="flex justify-between items-center">
+          <button>Back this project</button>
+          <bookmark></bookmark>
+        </div>
       </section>
 
       <section>
-        <div class="stat">
-          <h1>$89,914</h1>
-          of $100,000 backed
+        <div class="text-center flex flex-col space-y-8">
+          <div class="stat">
+            <h1>$89,914</h1>
+            <p>of $100,000 backed</p>
+          </div>
+          <div class="stat">
+            <h1>5,007</h1>
+            <p>total backers</p>
+          </div>
+          <div class="stat">
+            <h1>56</h1>
+            <p>days left</p>
+          </div>
         </div>
-        <div class="stat">
-          <h1>5,007</h1>
-          total backers
-        </div>
-        <div class="stat">
-          <h1>56</h1>
-          days left
-        </div>
-        <div class="progress"></div>
+        <div class="progress mt-3 w-full h-3 rounded-lg bg-gray-200"></div>
       </section>
 
       <section>
@@ -52,104 +72,178 @@
           sticks to be stored under the stand.
         </p>
 
-        <div class="teir-card">
-          <div>
-            <h2>Bamboo Stand</h2>
-            Pledge $25 or more
+        <div class="tier-card">
+          <div class="title">
+            <h3>Bamboo Stand</h3>
+            <p>Pledge $25 or more</p>
           </div>
           <p>
             You get an ergonomic stand made of natural bamboo. You've helped us
             launch our promotional campaign, and you’ll be added to a special
             Backer member list.
           </p>
-          <div>
-            <div>101 left</div>
-            <button>Select Reward</button>
+          <div class="count">
+            <h1>101</h1>
+            <p>left</p>
           </div>
+          <button>Select Reward</button>
         </div>
 
         <div class="tier-card">
-          <div>
-            <h2>Black Edition Stand</h2>
-            Pledge $75 or more
+          <div class="title">
+            <h3>Black Edition Stand</h3>
+            <p>Pledge $75 or more</p>
           </div>
           <p>
             You get a Black Special Edition computer stand and a personal thank
             you. You’ll be added to our Backer member list. Shipping is
             included.
           </p>
-          <div>
-            <div>
-              <h1>64</h1>
-              left
-            </div>
-            <button>Select Reward</button>
+          <div class="count">
+            <h1>64</h1>
+            <p>left</p>
           </div>
+          <button>Select Reward</button>
         </div>
 
-        <div class="tier-card">
-          <div>
-            <h2>Mahogany Special Edition</h2>
-            Pledge $200 or more
+        <div class="tier-card disabled">
+          <div class="title">
+            <h3>Mahogany Special Edition</h3>
+            <p>Pledge $200 or more</p>
           </div>
           <p>
             You get two Special Edition Mahogany stands, a Backer T-Shirt, and a
             personal thank you. You’ll be added to our Backer member list.
             Shipping is included.
           </p>
-          <div>
-            <div>
-              <h1>0</h1>
-              left
-            </div>
-            <button>Out of Stock</button>
+          <div class="count">
+            <h1>0</h1>
+            <p>left</p>
           </div>
+          <button disabled>Out of Stock</button>
         </div>
       </section>
-
-      <!-- Selection modal start -->
-
-      Back this project Want to support us in bringing Mastercraft Bamboo
-      Monitor Riser out in the world? Pledge with no reward Choose to support us
-      without a reward if you simply believe in our project. As a backer, you
-      will be signed up to receive product updates via email. Bamboo Stand
-      Pledge $25 or more You get an ergonomic stand made of natural bamboo.
-      You've helped us launch our promotional campaign, and you’ll be added to a
-      special Backer member list. 101 left
-
-      <!-- Selected pledge start -->
-      Enter your pledge $25 Continue
-      <!-- Selected pledge end -->
-
-      Black Edition Stand Pledge $75 or more You get a Black Special Edition
-      computer stand and a personal thank you. You’ll be added to our Backer
-      member list. Shipping is included. 64 left
-
-      <!-- Selected pledge start -->
-      Enter your pledge $75 Continue
-      <!-- Selected pledge end -->
-
-      Mahogany Special Edition Pledge $200 or more You get two Special Edition
-      Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be
-      added to our Backer member list. Shipping is included. 0 left
-
-      <!-- Selected pledge  start -->
-      Enter your pledge $200 Continue
-      <!-- Selected pledge end -->
-
-      <!-- Selection modal end -->
-
-      <!-- Success modal start -->
-
-      Thanks for your support! Your pledge brings us one step closer to sharing
-      Mastercraft Bamboo Monitor Riser worldwide. You will get an email once our
-      campaign is completed. Got it!
-
-      <!-- Success modal end -->
     </main>
   </div>
 </template>
 
 <script>
-export default {}
+import Bookmark from '../components/icons/Bookmark.vue'
+import CloseMenu from '../components/icons/CloseMenu.vue'
+import Hamburer from '../components/icons/Hamburer.vue'
+export default {
+  components: { Hamburer, CloseMenu, Bookmark },
+  data() {
+    return {
+      menuOpen: false,
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen
+    },
+  },
+}
 </script>
+
+<style lang="postcss">
+h1,
+h2,
+h3,
+button {
+  @apply font-bold;
+}
+
+h1,
+h2,
+h3,
+p {
+  @apply mb-4;
+}
+
+h1 {
+  @apply text-xl;
+}
+
+h2 {
+  @apply text-lg;
+}
+
+p {
+  @apply text-dark-gray;
+}
+
+section {
+  @apply rounded-lg border-gray-200 border-opacity-30 mb-8 px-6 py-8;
+  border-width: 1px;
+}
+
+button {
+  @apply text-white bg-light-cyan py-4 px-10 rounded-full h-14;
+}
+
+button:disabled {
+  @apply bg-dark-gray;
+}
+
+.menu-enter,
+.menu-leave-to {
+  opactiy: 0;
+}
+
+.menu-enter-active,
+.menu-leave-active {
+  transition: opactiy 200ms ease;
+}
+
+.icon {
+  @apply absolute -top-7 left-1/2 transform -translate-x-1/2 rounded-full;
+  @apply w-14 h-14;
+}
+
+.stat {
+  @apply relative;
+}
+
+.stat h1 {
+  @apply text-3xl mb-2;
+}
+
+.stat + .stat::before {
+  content: '';
+  @apply absolute -top-6 left-1/2 w-1/3 bg-gray-200 transform -translate-x-1/2;
+  height: 2px;
+}
+
+.progress::after {
+  content: '';
+  @apply block bg-light-cyan rounded-lg h-full;
+  width: 89%;
+}
+
+.tier-card {
+  @apply rounded-lg border-dark-gray border-opacity-30 p-4 mb-8;
+  border-width: 1px;
+}
+
+.tier-card > .title h3 {
+  @apply mb-1;
+}
+
+.tier-card > .title p {
+  @apply text-light-cyan;
+}
+
+.tier-card > .count {
+  @apply flex items-center my-2;
+}
+
+.tier-card > .count h1 {
+  @apply text-3xl mr-2;
+}
+
+.tier-card.disabled {
+  /* @apply; */
+  opacity: 50%;
+}
+</style>
