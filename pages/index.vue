@@ -2,7 +2,7 @@
   <div>
     <header>
       <nav>
-        <logo />
+        <logo></logo>
         <div>
           <ul>
             <li>About</li>
