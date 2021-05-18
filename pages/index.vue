@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-50">
+  <div class="bg-lighter-gray">
     <header class="relative">
       <div class="absolute top-0 right-0 left-0 bg-gradient-to-b from-black">
         <img
@@ -45,7 +45,7 @@
         </transition>
       </nav>
     </header>
-    <main class="mt-40 px-6 w-full sm:w-1/2 mx-auto bg-none">
+    <main class="mt-40 px-6 w-full sm:w-10/12 md:3/4 lg:w-1/2 mx-auto bg-none">
       <section class="relative text-center">
         <div class="icon">
           <img src="/logo-mastercraft.svg" alt="" />
@@ -56,7 +56,10 @@
         </p>
         <div class="flex justify-between items-center">
           <button>Back this project</button>
-          <bookmark></bookmark>
+          <div class="bookmark-buttons">
+            <bookmark class="relative mr-0 sm:-mr-7"></bookmark>
+            <div class="bookmark-btn">Bookmark</div>
+          </div>
         </div>
       </section>
 
@@ -183,6 +186,10 @@ p {
   @apply text-dark-gray;
 }
 
+a:hover {
+  @apply underline;
+}
+
 nav {
   @apply relative flex items-center w-full sm:w-4/5 sm:mx-auto z-10 p-6 pt-10;
   @apply text-white;
@@ -195,7 +202,12 @@ section {
 }
 
 button {
-  @apply text-white bg-light-cyan py-4 px-10 rounded-full h-14;
+  @apply text-white bg-light-cyan py-4 px-10 rounded-full h-14 transition-colors;
+}
+
+button:hover,
+button:focus {
+  @apply bg-dark-cyan;
 }
 
 button:disabled {
@@ -252,6 +264,15 @@ button:disabled {
 .icon {
   @apply absolute -top-7 left-1/2 transform -translate-x-1/2 rounded-full;
   @apply w-14 h-14;
+}
+
+.bookmark-buttons {
+  @apply flex text-darker-gray hover:text-light-gray transition-colors cursor-pointer;
+}
+
+.bookmark-btn {
+  @apply hidden sm:flex items-center justify-center py-4 pr-10 pl-12 rounded-r-full font-bold;
+  @apply bg-lighter-gray;
 }
 
 .stats {

@@ -5,9 +5,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'light-cyan': '#3CB4AC',
-        'dark-cyan': '#3CB4AC',
-        'dark-gray': '#7A7A7A',
+        'light-cyan': 'hsl(176, 50%, 47%)',
+        'dark-cyan': 'hsl(176, 72%, 28%)',
+        'lighter-gray': '#FAFAFA',
+        'light-gray': '#707070',
+        'dark-gray': '#b1b1b1',
+        'darker-gray': '#2F2F2F',
       },
     },
   },
