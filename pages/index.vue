@@ -1,19 +1,32 @@
 <template>
-  <div>
-    <header class="relative bg-red">
-      <img
-        src="/image-hero-mobile.jpg"
-        alt="Mastercraft Hero image"
-        class="absolute top-0 left-0 right-0 hero"
-      />
+  <div class="bg-gray-50">
+    <header class="relative">
+      <div class="absolute top-0 right-0 left-0 bg-gradient-to-b from-black">
+        <img
+          src="/image-hero-mobile.jpg"
+          alt="Mastercraft Hero image"
+          class="block sm:hidden"
+        />
+        <img
+          src="/image-hero-desktop.jpg"
+          alt="Mastercraft Hero image"
+          class="hidden sm:block"
+        />
+      </div>
+      <div
+        class="absolute top-0 right-0 left-0 bg-gradient-to-b from-black h-40"
+      ></div>
       <nav>
         <logo class="h-5"></logo>
-        <ul class="hidden sm:flex ml-auto">
+        <ul class="hidden sm:flex ml-auto items-center space-x-8 font-medium">
           <li><nuxt-link to="#">About</nuxt-link></li>
           <li><nuxt-link to="#">Discover</nuxt-link></li>
           <li><nuxt-link to="#">Get Started</nuxt-link></li>
         </ul>
-        <div class="ml-auto w-4 h-4 overflow-hidden" @click="toggleMenu">
+        <div
+          class="block sm:hidden ml-auto w-4 h-4 overflow-hidden"
+          @click="toggleMenu"
+        >
           <close-menu v-if="menuOpen" key="close"></close-menu>
           <hamburger v-else key="hamburger"></hamburger>
         </div>
@@ -32,7 +45,7 @@
         </transition>
       </nav>
     </header>
-    <main class="mt-52 px-6">
+    <main class="mt-40 px-6 w-full sm:w-1/2 mx-auto bg-none">
       <section class="relative text-center">
         <div class="icon">
           <img src="/logo-mastercraft.svg" alt="" />
@@ -48,7 +61,7 @@
       </section>
 
       <section>
-        <div class="text-center flex flex-col space-y-8">
+        <div class="stats">
           <div class="stat">
             <h1>$89,914</h1>
             <p>of $100,000 backed</p>
@@ -171,11 +184,13 @@ p {
 }
 
 nav {
-  @apply text-white bg-gradient-to-b from-black flex items-center w-full z-10 p-6;
+  @apply relative flex items-center w-full sm:w-4/5 sm:mx-auto z-10 p-6 pt-10;
+  @apply text-white;
 }
 
 section {
-  @apply bg-white rounded-lg border-gray-200 border-opacity-30 mb-8 px-6 py-8;
+  @apply mb-8 py-8 px-6 sm:px-10;
+  @apply bg-white rounded-lg border-gray-200 border-opacity-30;
   border-width: 1px;
 }
 
@@ -188,7 +203,7 @@ button:disabled {
 }
 
 .hero {
-  z-index: -1;
+  @apply bg-gradient-to-b from-black;
 }
 
 .menu-slide-enter,
@@ -239,18 +254,38 @@ button:disabled {
   @apply w-14 h-14;
 }
 
+.stats {
+  @apply flex flex-col sm:flex-row sm:justify-between;
+  @apply space-y-8 sm:space-y-0 sm:space-x-8 w-full;
+  @apply text-center sm:text-left;
+}
+
 .stat {
   @apply relative;
+  flex-basis: 100%;
 }
 
 .stat h1 {
   @apply text-3xl mb-2;
 }
 
-.stat + .stat::before {
-  content: '';
-  @apply absolute -top-6 left-1/2 w-1/3 bg-gray-200 transform -translate-x-1/2;
-  height: 2px;
+@media screen and (max-width: 640px) {
+  .stat > * {
+    padding: 0;
+  }
+
+  .stat + .stat::before {
+    content: '';
+    @apply absolute -top-6 left-1/2 w-1/3 bg-gray-200 transform -translate-x-1/2;
+    height: 2px;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .stat:not(:last-of-type) {
+    @apply border-gray-200;
+    border-right-width: 2px;
+  }
 }
 
 .progress::after {
