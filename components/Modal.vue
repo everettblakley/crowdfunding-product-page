@@ -26,7 +26,7 @@ export default {
 
 <style lang="postcss">
 .wrapper {
-  @apply absolute top-0 right-0 left-0 bottom-0 w-screen min-h-screen;
+  @apply fixed top-0 right-0 left-0 bottom-0 w-screen min-h-screen;
   @apply flex justify-center items-center;
   @apply bg-black bg-opacity-25;
   z-index: 9999;
