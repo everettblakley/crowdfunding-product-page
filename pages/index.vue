@@ -10,7 +10,7 @@
         <img
           src="/image-hero-desktop.jpg"
           alt="Mastercraft Hero image"
-          class="hidden sm:block"
+          class="hidden sm:block w-full object-cover hero-desktop"
         />
       </div>
       <div
@@ -45,7 +45,7 @@
         </transition>
       </nav>
     </header>
-    <main class="mt-40 px-6 w-full sm:w-10/12 md:3/4 lg:w-1/2 mx-auto bg-none">
+    <main class="mt-56 px-6 sm:px-0 center-container bg-none">
       <section class="relative text-center">
         <div class="icon">
           <img src="/logo-mastercraft.svg" alt="" />
@@ -55,7 +55,7 @@
           A beautiful & handcrafted monitor stand to reduce neck and eye strain.
         </p>
         <div class="flex justify-between items-center">
-          <button>Back this project</button>
+          <button @click.stop="toggleModal">Back this project</button>
           <div class="bookmark-buttons">
             <bookmark class="relative mr-0 sm:-mr-7"></bookmark>
             <div class="bookmark-btn">Bookmark</div>
@@ -106,6 +106,7 @@
         ></tier-card>
       </section>
     </main>
+    <modal v-show="modalOpen" @close="modalOpen = false"></modal>
   </div>
 </template>
 
@@ -113,12 +114,14 @@
 import Bookmark from '../components/icons/Bookmark.vue'
 import CloseMenu from '../components/icons/CloseMenu.vue'
 import Hamburger from '../components/icons/Hamburger.vue'
+import Modal from '../components/Modal.vue'
 import TierCard from '../components/TierCard.vue'
 export default {
-  components: { Hamburger, CloseMenu, Bookmark, TierCard },
+  components: { Hamburger, CloseMenu, Bookmark, TierCard, Modal },
   data() {
     return {
       menuOpen: false,
+      modalOpen: true,
       tiers: [
         {
           title: 'Bamboo Stand',
@@ -154,6 +157,9 @@ export default {
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen
+    },
+    toggleModal() {
+      this.modalOpen = !this.modalOpen
     },
   },
 }
@@ -216,6 +222,10 @@ button:disabled {
 
 .hero {
   @apply bg-gradient-to-b from-black;
+}
+
+.hero-desktop {
+  height: 400px;
 }
 
 .menu-slide-enter,

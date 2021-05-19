@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style>
+<style lang="postcss">
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap');
 
 html {
@@ -24,5 +24,9 @@ html {
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.center-container {
+  @apply w-full sm:w-10/12 md:w-3/4 lg:w-1/2 mx-auto;
 }
 </style>
