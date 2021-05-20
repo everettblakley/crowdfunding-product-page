@@ -62,17 +62,20 @@
         ></tier-card>
       </section>
     </main>
-    <modal v-show="modalOpen" @close="modalOpen = false"></modal>
+    <back-project-modal
+      v-show="modalOpen"
+      @close="modalOpen = false"
+    ></back-project-modal>
   </div>
 </template>
 
 <script>
 import Bookmark from '../components/icons/Bookmark.vue'
-import Modal from '../components/Modal.vue'
+import BackProjectModal from '../components/BackProjectModal.vue'
 import TierCard from '../components/TierCard.vue'
 import CustomHeader from '../components/CustomHeader.vue'
 export default {
-  components: { Bookmark, TierCard, Modal, CustomHeader },
+  components: { Bookmark, TierCard, BackProjectModal, CustomHeader },
   data() {
     return {
       modalOpen: true,
