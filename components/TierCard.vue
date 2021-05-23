@@ -13,7 +13,7 @@
         <h1 class="text-3xl mr-2">{{ count }}</h1>
         <p>left</p>
       </div>
-      <button :disabled="disabled">
+      <button :disabled="disabled" @click.stop="onClickSelect">
         {{ disabled || count === 0 ? 'Out of stock' : 'Select Reward' }}
       </button>
     </div>
@@ -42,6 +42,11 @@ export default {
     disabled: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    onClickSelect() {
+      this.$emit('select-tier', this.title)
     },
   },
 }

@@ -52,19 +52,22 @@
           sticks to be stored under the stand.
         </p>
         <tier-card
-          v-for="tier in tiers"
+          v-for="tier in tierCards"
           :key="tier.title"
           :title="tier.title"
           :amount="tier.amount"
           :body="tier.body"
           :count="tier.count"
           :disabled="tier.disabled"
+          @select-tier="onSelectTier"
         ></tier-card>
       </section>
     </main>
     <back-project-modal
-      v-show="modalOpen"
-      @close="modalOpen = false"
+      v-if="modalOpen"
+      :tiers="tiers"
+      @select-tier="onSelectTier"
+      @close="onModalClose"
     ></back-project-modal>
   </div>
 </template>
@@ -78,8 +81,16 @@ export default {
   components: { Bookmark, TierCard, BackProjectModal, CustomHeader },
   data() {
     return {
-      modalOpen: true,
+      modalOpen: false,
       tiers: [
+        {
+          title: '',
+          count: undefined,
+          amount: 0,
+          body: '',
+          disabled: false,
+          selected: false,
+        },
         {
           title: 'Bamboo Stand',
           amount: 25,
@@ -88,6 +99,8 @@ export default {
             "You've helped us launch our promotional campaign, " +
             'and you’ll be added to a special Backer member list.',
           count: 101,
+          disabled: false,
+          selected: false,
         },
         {
           title: 'Black Edition Stand',
@@ -97,6 +110,8 @@ export default {
             'thank you. You’ll be added to our Backer member list. ' +
             'Shipping is included.',
           count: 64,
+          disabled: false,
+          selected: false,
         },
         {
           title: 'Mahogany Special Edition',
@@ -107,13 +122,37 @@ export default {
             'list. Shipping is included.',
           count: 0,
           disabled: true,
+          selected: false,
         },
       ],
     }
   },
+  computed: {
+    tierCards() {
+      return this.tiers.filter((t) => !!t.title)
+    },
+  },
   methods: {
     toggleModal() {
       this.modalOpen = !this.modalOpen
+    },
+    onModalClose() {
+      this.modalOpen = false
+      this.tiers.forEach((tier) => (tier.selected = false))
+    },
+    onSelectTier(title) {
+      let tier
+      this.tiers.forEach((t) => {
+        if (t.title === title && !t.selected) {
+          tier = t
+          tier.selected = true
+        } else {
+          t.selected = false
+        }
+      })
+      if (tier !== undefined) {
+        this.modalOpen = true
+      }
     },
   },
 }

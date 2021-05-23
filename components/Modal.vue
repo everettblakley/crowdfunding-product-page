@@ -1,8 +1,12 @@
 <template>
-  <transition name="modal">
+  <transition name="modal" appear>
     <div>
-      <div class="wrapper"></div>
-      <div v-on-clickaway="close" class="modal center-container">
+      <div key="wrapper" class="wrapper"></div>
+      <div
+        key="modal-body"
+        v-on-clickaway="close"
+        class="center-container modal"
+      >
         <close-modal
           class="absolute top-8 right-8"
           @click.native="close"
@@ -33,14 +37,20 @@ export default {
 }
 
 .modal {
-  @apply absolute top-48 left-1/2 transform -translate-x-1/2;
-  @apply bg-white mx-6 rounded-2xl px-6 py-10;
+  @apply absolute top-48 sm:mx-6 left-1/2 transform -translate-x-1/2;
+  @apply bg-white rounded-2xl px-6 py-10;
   z-index: 10000;
+  width: calc(100vw - 3rem);
 }
 
 .modal-enter,
 .modal-leave-to {
   opacity: 0;
+}
+
+.modal-enter-to,
+.modal-leave {
+  opacity: 1;
 }
 
 .modal-enter-active,
